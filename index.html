@@ -2,7 +2,7 @@
 <html>
 	<head>
 		<meta charset="utf-8">
-		<title>Multimodal Fine-grained Context Interaction Graph Modeling for Conversational Speech Synthesis</title>
+		<title>Leveraging Named Entity Knowledge for Robust Partial Audio Deepfake Detection via Attention Aggregation</title>
 		<link type="text/css" href="./css/basic.css" rel="stylesheet">
 		<link type="text/css" href="./css/index.css" rel="stylesheet">
 		<link type="text/css" href="./css/bootstrap.min.css" rel="stylesheet">
@@ -61,7 +61,7 @@
 		<div class="main">
 			<div class="title">
 				<img class="top-img" src="img/background.png" />
-				<span>Multimodal Fine-grained Context Interaction Graph Modeling for Conversational Speech Synthesis</span>
+				<span>Leveraging Named Entity Knowledge for Robust Partial Audio Deepfake Detection via Attention Aggregation</span>
 			</div>
 			<div class="content">
 				<div class="section author">
@@ -69,90 +69,73 @@
 				<div class="section">
 					<div class="section-title">ABSTRACT</div>
 					<div class="section-content abstract">
-						Conversational Speech Synthesis (CSS) aims to generate speech with natural prosody by understanding the multimodal dialogue history (MDH). The latest work predicts the accurate prosody expression of the target utterance by modeling the utterance-level interaction characteristics of MDH and the target utterance. However, MDH contains fine-grained semantic and prosody knowledge at the word level.
-						Existing methods overlook the fine-grained semantic and prosody interaction modeling. To address this gap, we propose MFCIG-CSS, a novel Multimodal Fine-grained Context Interaction Graph-based CSS system. Our approach constructs two specialized interaction graphs: a multimodal fine-grained dialogue semantic interaction graph and a multimodal fine-grained dialogue prosody interaction graph. These two graphs effectively encode interactions between word-level semantics, prosody, and their influence on subsequent utterances in MDH. The encoded interaction features are then leveraged to enhance synthesized speech with natural conversational prosody. Experiments on the DailyTalk dataset demonstrate that MFCIG-CSS outperforms all baseline models in terms of prosody expressiveness. Code and speech samples are available at
-						 <a href="https://github.com/coder-speech/MFCIG-CSS">https://github.com/coder-speech/MFCIG-CSS</a>. 
+						Different from traditional sentence-level audio deepfake detection (ADD), partial audio deepfake detection (PADD) requires frame-level positioning of the location of fake speech. While some progress has been made in this area, leveraging semantic information from audio, especially named entities, remains an underexplored aspect. To this end, we propose a novel method, NE-PADD, which leverages named entity knowledge for robust partial audio deepfake detection through attention aggregation. NE-PADD consists of two parallel branches: Speech Named Entity Recognition (SpeechNER) and PADD. Specifically, we introduce two attention aggregation mechanisms to help PADD models better understand named entity knowledge, thus achieving more robust PADD performance. (1) Attention Fusion (AF) combines attention from SpeechNER and PADD for more accurate weights. (2) Attention Transfer (AT) uses an auxiliary loss from their attention distributions to guide PADD in learning named entity semantics. We construct an appropriative PartialSpoof-NER dataset based on the existing PartialSpoof dataset and conduct a detailed comparative analysis of the two attention aggregation methods. Experiments demonstrate that our method exceeds all advanced baselines and demonstrates the effectiveness of fusing named entity knowledge during PADD. The code is available at 
+						<a href="https://github.com/add-source/NE-PADD">https://github.com/add-source/NE-PADD</a>. 
 					</div>
 				</div>
 				
 				<div class="section">
 					<div class="section-title">MODEL ARCHITECTURE</div>
 					<div class="section-content model">
-						<img src="img/IS-25-png.png" alt="" class="model-img">
+						<img src="img/model.png" alt="" class="model-img">
 						
-						<p style="padding-top: 1rem; color: #a1a1a1; font-size: 1rem; text-align: center;">Figure: The overview of MFCIG-CSS consists of Multimodal Fine-grained Dialogue Semantic Interaction Graph, Multimodal Fine-grained Dialogue Prosody Interaction Graph, and Speech Synthesizer.</p>
+						<p style="padding-top: 1rem; color: #a1a1a1; font-size: 1rem; text-align: center;">Figure: The architecture of our proposed model. The model architecture includes two feature extraction modules on the left, with the proposed attention fusion (AF) and attention transfer (AT) methods in the center, and the backend classifier on the right.</p>
 					</div>
 				</div>
 				
 				<div class="section">
-					<div class="section-title">EXPERIMENTS</div>
-					<div class="section-content experiments">
-						<!-- We develop four neural TTS systems for a  -->
-						<strong>Comparative Experiment:</strong>
-						</br> 1) <b>BaseCTTS</b> incorporates a coarse-grained context encoder to model sentence-level textual features of dialogue history, aiming to enhance the quality of the synthesized speech. <a href="https://ieeexplore.ieee.org/abstract/document/9383460" style="color: #1d5da4;">[PAPER]</a>
-						</br> 2) <b>FCTalker</b> designs a coarse-grained and fine-grained text context encoder to enhance the prosodic expressiveness of synthesized speech. <a href="https://ieeexplore.ieee.org/document/10800061" style="color: #1d5da4;">[PAPER]</a>
-						</br> 3) <b>M²-CTTS</b> incorporates a multi-scale, multi-modal context encoder that simultaneously models the textual and speech features of dialogue history to enhance the prosody of the synthesized speech.. <a href="https://ieeexplore.ieee.org/abstract/document/10096905" style="color: #1d5da4;">[PAPER]</a>
-						</br> 4) <b>CONCSS</b> incorporates a negative-sample-enhanced sampling strategy when modeling multi-modal dialogue history to improve the discriminability of context vectors, aiming to enhance the prosodic sensitivity of the synthesized speech. <a href="https://ieeexplore.ieee.org/abstract/document/10446506" style="color: #1d5da4;">[PAPER]</a>
-						</br> 5) <b>MSRGCN-CSS</b> incorporates a context modeling scheme based on multi-scale relational graph convolution networks to enhance the speaking style of the synthesized speech. <a href="https://dl.acm.org/doi/abs/10.1145/3503161.3547831" style="color: #1d5da4;">[PAPER]</a>
-						</br> 6) <b>ECSS</b> incorporates a context modeling scheme based on multi-source knowledge heterogeneous graphs to enhance the emotional expressiveness of the synthesized speech. <a href="https://ojs.aaai.org/index.php/AAAI/article/view/29833" style="color: #1d5da4;">[PAPER]</a>
-						</br> 7) <b>I³-CSS</b> incorporates a context interaction modeling scheme that handles both inter-modal and intra-modal interactions, aiming to improve the prosodic performance of the synthesized speech. <a href="https://arxiv.org/abs/2412.18733" style="color: #1d5da4;">[PAPER]</a>
-						</br></br><strong>Ablation Experiment:</strong>
-						</br> <b>Abl.Exp.1</b> removes MFSIG to validate the impact of the multimodal fine-grained dialogue semantic interaction graph on model performance.
-						</br> <b>Abl.Exp.2</b> removes MFPIG to validate the impact of the multimodal fine-grained dialogue prosody interaction graph on model performance.
-						</br> <b>Abl.Exp.3</b> removes both MFSIG and MFPIG to assess their joint impact on model performance.
-					</div>
+					<div class="section-title">PartialSpoof-NER Dataset</div>
+					
 					<div class="section-content ">
 						<hr />
 						<div class="subsection-exp-2">
 							
 							<!-- 一句话分割 -->
 							<div class="module-content">
-								<span class="note"><b>Sample 1: </b>That's a good reason to like something.</span>
-								
-								<button class="toggle-button" onclick="toggleTable('tab1')">Show Conversation history 1</button>
+			
 								<div id="tab1" class="toggle-content">
 								
 									<table id="table_4">
 										<thead>
 											<colgroup>
-											   <col width=10%></col>
+											  
 											   <col width=25%></col>
 											   <col width=20%></col>
 											</colgroup>
 											<tr>
-											  <th colspan="1" style="text-align: center"><strong>Conversation history</strong></th>
+											  
 											  <th colspan="1" style="text-align: center"><strong>text</strong></th>
 											  <th colspan="1" style="text-align: center"><strong>speech</strong></th>
 											</tr>
 										</thead>
 										<tbody>
 											<tr>
-												<td style="text-align: center">1<sup>th</sup></td>
+											
 												<td style="text-align: center">What type of music do you like to listen to?</td>
 												<td style="text-align: center"><audio src="./audio/history/2394/0_0_d2394.wav" controls="" preload=""></audio></td>
 											</tr>
 											<tr>
-												<td style="text-align: center">2<sup>th</sup></td>
+												
 												<td style="text-align: center">I like listening to different kinds of music.</td>
 												<td style="text-align: center"><audio src="./audio/history/2394/1_1_d2394.wav" controls="" preload=""></audio></td>
 											</tr>
 											<tr>
-												<td style="text-align: center">3<sup>th</sup></td>
+											
 												<td style="text-align: center">Like what, for instance?</td>
 												<td style="text-align: center"><audio src="./audio/history/2394/2_0_d2394.wav" controls="" preload=""></audio></td>
 											</tr>
 											<tr>
-												<td style="text-align: center">4<sup>th</sup></td>
+												
 												<td style="text-align: center">I enjoy Rock and R&B.</td>
 												<td style="text-align: center"><audio src="./audio/history/2394/3_1_d2394.wav" controls="" preload=""></audio></td>
 											</tr>
 											<tr>
-												<td style="text-align: center">5<sup>th</sup></td>
+												
 												<td style="text-align: center">Why is that?</td>
 												<td style="text-align: center"><audio src="./audio/history/2394/4_0_d2394.wav" controls="" preload=""></audio></td>
 											</tr>
 											<tr>
-												<td style="text-align: center">6<sup>th</sup></td>
+												
 												<td style="text-align: center">I like the different instruments that they use.</td>
 												<td style="text-align: center"><audio src="./audio/history/2394/5_1_d2394.wav" controls="" preload=""></audio></td>
 											</tr>
