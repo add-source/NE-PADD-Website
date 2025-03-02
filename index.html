@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>Leveraging Named Entity Knowledge for Robust Partial Audio Deepfake Detection via Attention Aggregation</title>
+		<link type="text/css" href="./css/basic.css" rel="stylesheet">
+		<link type="text/css" href="./css/index.css" rel="stylesheet">
+		<link type="text/css" href="./css/bootstrap.min.css" rel="stylesheet">
+		<script type='text/javascript' src="./js/jquery-3.3.1.min.js"></script>
+		<script type='text/javascript' src="./js/index.js"></script>
+		
+		
+		
+		
+		<style>
+		    .toggle-content {
+		      display: none; /* 默认隐藏内容 */
+		      margin-top: 10px;
+		    }
+		    .toggle-button {
+		      cursor: pointer;
+		      background-color: #007bff;
+		      color: white;
+		      border: none;
+		      padding: 5px 10px;
+		      border-radius: 3px;
+		      font-size: 14px;
+		    }
+		    .toggle-button:hover {
+		      background-color: #0056b3;
+		    }
+		    table {
+		      width: 100%;
+		      border-collapse: collapse;
+		      margin-top: 10px;
+		    }
+		    th, td {
+		      border: 1px solid #ccc;
+		      padding: 8px;
+		      text-align: center;
+		    }
+		  </style>
+		  
+		  <script>
+		    // 通用表格展开/折叠功能
+		    function toggleTable(tableId) {
+		      const table = document.getElementById(tableId);
+		      const button = document.querySelector(`button[onclick="toggleTable('${tableId}')"]`);
+		      if (table.style.display === 'none' || table.style.display === '') {
+		        table.style.display = 'block';
+		        button.textContent = button.textContent.replace('Show', 'Hide');
+		      } else {
+		        table.style.display = 'none';
+		        button.textContent = button.textContent.replace('Hide', 'Show');
+		      }
+		    }
+		  </script>
+		
+	</head>
+	<body>
+		<div class="main">
+			<div class="title">
+				<img class="top-img" src="img/background.png" />
+				<span>Leveraging Named Entity Knowledge for Robust Partial Audio Deepfake Detection via Attention Aggregation</span>
+			</div>
+			<div class="content">
+				<div class="section author">
+				</div>
+				<div class="section">
+					<div class="section-title">ABSTRACT</div>
+					<div class="section-content abstract">
+						Different from traditional sentence-level audio deepfake detection (ADD), partial audio deepfake detection (PADD) requires frame-level positioning of the location of fake speech. While some progress has been made in this area, leveraging semantic information from audio, especially named entities, remains an underexplored aspect. To this end, we propose a novel method, NE-PADD, which leverages named entity knowledge for robust partial audio deepfake detection through attention aggregation. NE-PADD consists of two parallel branches: Speech Named Entity Recognition (SpeechNER) and PADD. Specifically, we introduce two attention aggregation mechanisms to help PADD models better understand named entity knowledge, thus achieving more robust PADD performance. (1) Attention Fusion (AF) combines attention from SpeechNER and PADD for more accurate weights. (2) Attention Transfer (AT) uses an auxiliary loss from their attention distributions to guide PADD in learning named entity semantics. We construct an appropriative PartialSpoof-NER dataset based on the existing PartialSpoof dataset and conduct a detailed comparative analysis of the two attention aggregation methods. Experiments demonstrate that our method exceeds all advanced baselines and demonstrates the effectiveness of fusing named entity knowledge during PADD. The code is available at 
+						<a href="https://github.com/add-source/NE-PADD">https://github.com/add-source/NE-PADD</a>. 
+					</div>
+				</div>
+				
+				<div class="section">
+					<div class="section-title">MODEL ARCHITECTURE</div>
+					<div class="section-content model">
+						<img src="img/model.png" alt="" class="model-img">
+						
+						<p style="padding-top: 1rem; color: #a1a1a1; font-size: 1rem; text-align: center;">Figure: The architecture of our proposed model. The model architecture includes two feature extraction modules on the left, with the proposed attention fusion (AF) and attention transfer (AT) methods in the center, and the backend classifier on the right.</p>
+					</div>
+				</div>
+				
+				<div class="section">
+					<div class="section-title">PartialSpoof-NER Dataset Samples</div>
+					<div class="section-content">
+						<hr />
+						<div class="subsection-exp-2">
+							<div class="module-content">
+								<div id="tab1">
+									<table id="table_4">
+										<thead>
+											<colgroup>
+												<col width="60%">
+												<col width="40%">
+											</colgroup>
+											<tr>
+												<th style="text-align: center"><strong>Text</strong></th>
+												<th style="text-align: center"><strong>Speech</strong></th>
+											</tr>
+										</thead>
+										<tbody>
+											<tr>
+												<td style="text-align: center">So Levin was later charged with her murder.</td>
+												<td style="text-align: center">
+													<audio src="./audio/CON_T_0000015.wav" controls preload="none"></audio>
+												</td>
+											</tr>
+											<tr>
+												<td style="text-align: center">But he was never thought for where the Lee Chamber or the board.</td>
+												<td style="text-align: center">
+													<audio src="./audio/CON_D_0000153.wav" controls preload="none"></audio>
+												</td>
+											</tr>
+											<tr>
+												<td style="text-align: center">A bright private matter between the Firm and Airstall.</td>
+												<td style="text-align: center">
+													<audio src="./audio/CON_D_0000022.wav" controls preload="none"></audio>
+												</td>
+											</tr>
+											<tr>
+												<td style="text-align: center">But he has goodest dreams for Hoseo.</td>
+												<td style="text-align: center">
+													<audio src="./audio/CON_D_0000012.wav" controls preload="none"></audio>
+												</td>
+											</tr>
+											<tr>
+												<td style="text-align: center">Jackson may well be right.</td>
+												<td style="text-align: center">
+													<audio src="./audio/CON_E_0000728.wav" controls preload="none"></audio>
+												</td>
+											</tr>
+
+											<!-- Add more rows as needed -->
+										</tbody>
+									</table>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+				
+			</div>
+		</div>
+		
+		
+	</body>
+</html>
